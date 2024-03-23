@@ -1,0 +1,6 @@
+    1  sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    2   cd /etc/yum.repos.d/
+    4  ls -ltr
+    5  cat hashicorp.repo
+    6  sudo yum -y install terraform
+    7  terraform -v
