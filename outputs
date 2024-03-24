@@ -1,0 +1,83 @@
+main.tf 
+resource "local_file" "first-one" {
+        filename= var.file1
+        content= "${local_file.second-one.content}"
+        depends_on = [
+                        local_file.second-one
+]
+}
+
+
+resource "local_file" "second-one" {
+
+        filename = "/mnt/str/i1.html"
+        content = "my values are return in first resource"
+}
+
+resource "local_file" "third-one" {
+
+        filename = var.file2
+        content = "${local_file.first-one.content}"
+}
+---------------------------------------------------------------------------------------------
+variable.tf
+variable "file1" {
+        default = "/mnt/str/h.html"
+
+}
+
+variable "file2" {
+
+##here input given at the time of execution
+}
+
+---------------------------------------------------------------------------------------------------
+output.tf
+output "perm-1"{
+
+        value = local_file.first-one.file_permission
+}
+
+output "con-1"{
+
+        value = local_file.first-one.content
+}
+
+output "id"{
+
+        value = local_file.first-one.id
+}
+
+output "filename-resource-third" {
+        value = local_file.third-one.filename
+}
+
+
+
+
+
+################################################################################################
+outputs:-
+*1*
+local_file.second-one: Creating...
+local_file.second-one: Creation complete after 0s [id=22a1c1f3fe7ffc3c22cf23df770e9432bad2157d]
+local_file.first-one: Creating...
+local_file.first-one: Creation complete after 0s [id=22a1c1f3fe7ffc3c22cf23df770e9432bad2157d]
+local_file.third-one: Creating...
+local_file.third-one: Creation complete after 0s [id=22a1c1f3fe7ffc3c22cf23df770e9432bad2157d]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+con-1 = "my values are return in first resource"
+filename-resource-third = "/mnt/str/foo.css"
+id = "22a1c1f3fe7ffc3c22cf23df770e9432bad2157d"
+perm-1 = "0777"
+
+*2*
+[root@ip-172-31-43-50 terrafofrm]# terraform output
+con-1 = "my values are return in first resource"
+filename-resource-third = "/mnt/str/foo.css"
+id = "22a1c1f3fe7ffc3c22cf23df770e9432bad2157d"
+perm-1 = "0777"
