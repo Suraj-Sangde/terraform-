@@ -1,0 +1,10 @@
+output "id-1" {
+
+        value = local_file.first-one.file_permission
+}
+
+output "id-2" {
+
+        value = local_file.first-two.file_permission
+}
+
