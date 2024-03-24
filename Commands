@@ -1,0 +1,10 @@
+ terraform init
+ terraform plan
+ terraform apply  or  terraform apply --auto-approve
+  terraform show
+terraform destroy or  terraform destroy --auto-approve
+terraform validate
+ terraform plan -var "filename=/mnt/suryabhai" -var "content= aggressive one"
+export TF_VAR_filename=/mnt/keana
+export TF_VAR_filename=/mnt/keana TF_VAR_content="somewhere only we know"
+terraform output
