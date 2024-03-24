@@ -1,0 +1,28 @@
+terraform {
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+      version = "2.5.0"
+    }
+  }
+}
+
+
+
+
+
+
+resource "local_file" "first-one" {
+
+
+        filename = "/mnt/index.html"
+        content = "${local_file.first-two.id}"
+         file_permission      = "0700"
+}
+
+resource "local_file" "first-two" {
+
+        filename= var.filename
+        content= var.content
+         file_permission      = "400"
+}
