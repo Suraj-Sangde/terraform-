@@ -1,0 +1,8 @@
+variable "filename" {
+                default = "/mnt/suraj.html"  
+}
+
+
+variable "content" {
+        ##here default value can be set while executing also 
+}
